@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require("electron");
-let mainWindow;
+let mainWindow, secondWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -8,6 +8,7 @@ function createWindow() {
       nodeIntegration: true,
     },
     show: false,
+    frame: false,
   });
   mainWindow.loadFile("index.html");
   mainWindow.once('ready-to-show', () => {
