@@ -7,7 +7,11 @@ bcrypt.hash('123456', 10, function (err, hash) {
   console.log(hash); 
   // Store hash in your password DB. 
 });
-
+//check if the app is ready out put on console 
+app.on('ready', () => {
+  console.log('App is ready'.green, app.isReady());
+  //create new window
+});
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -31,16 +35,20 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open DevTools - Remove for PRODUCTION!
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Listen for window being closed
   mainWindow.on('closed',  () => {
+    // debugger;
     mainWindow = null
   })
 }
 
 // Electron `app` is ready
-app.on('ready', createWindow)
+app.on('ready', () => { 
+  console.log(colors.rainbow('app is ready!'));
+  createWindow();
+})
 
 // Quit when all windows are closed - (Not macOS - Darwin)
 app.on('window-all-closed', () => {
