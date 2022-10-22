@@ -1,15 +1,23 @@
 // Modules
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require('electron')
+const colors = require('colors');
+// using bcript 
+const bcrypt = require('bcrypt');
+bcrypt.hash('123456', 10, function (err, hash) { 
+  console.log(hash); 
+  // Store hash in your password DB. 
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-
+console.log(colors.rainbow('Hello from Electron!'));
 // Create a new BrowserWindow when `app` is ready
 function createWindow () {
+  // console.log(process);
 
   mainWindow = new BrowserWindow({
-    width: 1000, height: 800,
+    width: 800, height: 800,
     webPreferences: {
       // --- !! IMPORTANT !! ---
       // Disable 'contextIsolation' to allow 'nodeIntegration'
@@ -23,7 +31,7 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open DevTools - Remove for PRODUCTION!
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Listen for window being closed
   mainWindow.on('closed',  () => {
