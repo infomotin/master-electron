@@ -4,11 +4,13 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 800,
+    minHeight: 400,
+    minWidth: 400,
     webPreferences: {
       nodeIntegration: true,
     },
     show: false,
-    frame: false,
+    // frame: false,
   });
   mainWindow.loadFile("index.html");
   mainWindow.once('ready-to-show', () => {
