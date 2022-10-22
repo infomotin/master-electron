@@ -60,6 +60,10 @@ const beforeAppQuit = () => {
 const appUnfocus = () => { 
   console.log('app unfocus' + app.on('browser-window-blur', () => {
     console.log('app unfocus');
+    setTimeout(() => {
+      app.quit();
+      console.log('app quit when unfocus');
+    }, 1000);
   }));
 }
 appUnfocus();
@@ -75,6 +79,14 @@ appFocus();
 // Electron `app` is ready
 app.on('ready', () => { 
   console.log(colors.rainbow('app is ready!'));
+  console.log('app.getPath("userData")' + app.getPath("userData"));
+  console.log('app.getPath("music")' + app.getPath("music"));
+  console.log('app.getPath("pictures")' + app.getPath("pictures"));
+  console.log('app.getPath("videos")' + app.getPath("videos"));
+  console.log('app.getPath("downloads")' + app.getPath("downloads"));
+  console.log('app.getPath("documents")' + app.getPath("documents"));
+  console.log('app.getPath("desktop")' + app.getPath("desktop"));
+  console.log('app.getPath("temp")' + app.getPath("temp"));
   createWindow();
 })
 
