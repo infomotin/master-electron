@@ -50,10 +50,28 @@ function createWindow () {
 // before app is quit function 
 const beforeAppQuit = () => {
   console.log('before app quit' + app.on('before-quit', (event) => {
-    console.log('before quit');
+    console.log('privent app from quiting');
+    //this event will not quit the app to save the data from user 
+    event.preventDefault();
    }));
 }
- beforeAppQuit();
+// beforeAppQuit();
+//app unfocus 
+const appUnfocus = () => { 
+  console.log('app unfocus' + app.on('browser-window-blur', () => {
+    console.log('app unfocus');
+  }));
+}
+appUnfocus();
+
+//app focus
+const appFocus = () => {
+  console.log('app focus' + app.on('browser-window-focus', () => {
+    console.log('app focus');
+  }));
+}
+appFocus();
+
 // Electron `app` is ready
 app.on('ready', () => { 
   console.log(colors.rainbow('app is ready!'));
