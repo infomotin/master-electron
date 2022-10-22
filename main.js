@@ -1,5 +1,13 @@
 // Modules
 const { app, BrowserWindow } = require('electron')
+//check if the app is ready out put on console 
+const appisRabe = () => { 
+  console.log('app is ready'+ app.isReady());
+}
+// appisRabe();
+setTimeout(() => {
+  appisRabe();
+ }, 1000);
 const colors = require('colors');
 // using bcript 
 const bcrypt = require('bcrypt');
@@ -7,11 +15,7 @@ bcrypt.hash('123456', 10, function (err, hash) {
   console.log(hash); 
   // Store hash in your password DB. 
 });
-//check if the app is ready out put on console 
-app.on('ready', () => {
-  console.log('App is ready'.green, app.isReady());
-  //create new window
-});
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -43,7 +47,13 @@ function createWindow () {
     mainWindow = null
   })
 }
-
+// before app is quit function 
+const beforeAppQuit = () => {
+  console.log('before app quit' + app.on('before-quit', (event) => {
+    console.log('before quit');
+   }));
+}
+ beforeAppQuit();
 // Electron `app` is ready
 app.on('ready', () => { 
   console.log(colors.rainbow('app is ready!'));
