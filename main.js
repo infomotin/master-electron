@@ -5,16 +5,23 @@ function createWindow() {
     width: 800,
     height: 800,
     webPreferences: {
-      contextIsolation: false,
       nodeIntegration: true,
     },
+    show: false,
   });
   mainWindow.loadFile("index.html");
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  });
+
+  //load url for production
+  // mainWindow.loadURL("https://google.com");
+  // mainWindow.webContents.openDevTools();
   mainWindow.on("closed", () => {
-    // debugger;
     mainWindow = null;
   });
 }
+
 app.on("ready", createWindow);
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
